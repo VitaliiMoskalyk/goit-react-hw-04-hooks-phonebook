@@ -1,25 +1,33 @@
-import propTypes, { shape } from "prop-types";
+import propTypes from "prop-types";
+import defaultImage from "../../images/default.png";
+import {
+  ItemWrapper,
+  Image,
+  Name,
+  Number,
+  FlexContact,
+  Button,
+} from "./contactIte.styled";
 
-const ContactItem = ({ data, deleteFunction }) => {
+const ContactItem = ({ contact, deleteFunction }) => {
+  const { id, name, number } = contact;
+
   return (
-    data.length > 0 && (
-      <ol>
-        {data.map((el) => (
-          <li key={el.id}>
-            <p>{el.name}</p>
-            <span>{el.number}</span>
-            <button type="button" onClick={() => deleteFunction(el.id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ol>
-    )
+    <ItemWrapper>
+      <Image src={defaultImage} alt={name} />
+      <FlexContact>
+        <Name>{name}</Name>
+        <Number>{number}</Number>
+      </FlexContact>
+      <Button type="button" onClick={() => deleteFunction(id)}>
+        X
+      </Button>
+    </ItemWrapper>
   );
 };
 
 ContactItem.propTypes = {
-  data: propTypes.arrayOf(shape).isRequired,
+  contact: propTypes.object.isRequired,
   deleteFunction: propTypes.func.isRequired,
 };
 export default ContactItem;

@@ -1,20 +1,20 @@
 import propTypes from "prop-types";
 
-const Filter = ({ state, onChange }) => {
+const Filter = ({ searchValue, finder }) => {
   return (
-    <label htmlFor={state}>
+    <label htmlFor={searchValue}>
       <input
         type="text"
         placeholder="Find contact"
-        value={state}
-        onChange={onChange}
+        value={searchValue}
+        onChange={finder}
       ></input>
     </label>
   );
 };
 
 Filter.propTypes = {
-  state: propTypes.string.isRequired,
-  onChange: propTypes.func.isRequired,
+  searchValue: propTypes.string.isRequired,
+  finder: propTypes.func.isRequired,
 };
 export default Filter;
